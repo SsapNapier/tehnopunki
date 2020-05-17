@@ -89,6 +89,10 @@ export default {
   background-attachment: inherit;
   min-height: 100vh;
   z-index: -3;
+  @media (max-width: 768px) and (min-width: 0px) {
+    background-repeat: repeat;
+    background-size: 100% 100%;
+  }
   .this-content {
     display: flex;
     width: 80%;

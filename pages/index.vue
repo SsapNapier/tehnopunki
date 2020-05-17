@@ -78,6 +78,10 @@ export default {
   min-height: 100vh;
   background-color: #232323;
   background-position: absolute;
-  top: 0vh;
+  @media (max-width: 768px) and (min-width: 0px) {
+    background-repeat: repeat;
+    background-size: 100% 100%;
+    min-height: 100%;
+  }
 }
 </style>
