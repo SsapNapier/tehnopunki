@@ -56,6 +56,11 @@ export default {
       this.error = err.message;
     }
   },
+  mounted() {
+     let str = window.location.pathname;
+     let re = str.split('/blog/');
+     this.adress = this.slug;
+},
   methods: {
     async createPost() {
       await PostService.insertPost(this.text, this.name, this.adress);
