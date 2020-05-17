@@ -72,10 +72,12 @@ export default {
   display: flex;
   flex-direction: column;
   background-image: url(../static/1233.jpg);
-  background-size: 100% 100%;
+  background-size: 100vw 100vh;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  min-height: 100%;
+  min-height: 100vh;
   background-color: #232323;
+  background-position: absolute;
+  top: 0vh;
 }
 </style>
