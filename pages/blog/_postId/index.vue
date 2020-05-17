@@ -84,10 +84,10 @@ export default {
   display: flex;
   flex-direction: column;
   background-image: url(../../../static/1233.jpg);
-  background-size: 100vw 100vh;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  min-height: 100vh;
+  min-height: 100%;
   z-index: -3;
   .this-content {
     display: flex;
