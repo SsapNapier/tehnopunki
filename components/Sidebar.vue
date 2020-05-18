@@ -2,15 +2,20 @@
  <div class="sidebar">
   <div
    v-for="post in posts.slice(0, 5)"
-   :keys="posts">
-  <img :src="post.thumbnailUrl" alt="">
-   <div class="sidebar-info">
-    <h4>{{ post.title }}</h4>
-    <span>Сегодня в 12:34</span>
-    <span>534 </span>
-    <span>Просмотров</span>
-    <span>GTA ONLINE</span>
+   :keys="posts"
+   class="sidebar-post">
+  <nuxt-link :to="post.id">
+   <div>
+    <img :src="post.thumbnailUrl" alt="">
+     <div class="sidebar-info">
+      <h4 class="sidebar-title">{{ post.title }}</h4>
+      <span>Сегодня в 12:34</span>
+      <span><span>534</span> Просмотров</span>
+      <span>{{ post.theme }}</span>
+     </div>
    </div>
+  </nuxt-link>
+  <!-- <hr> -->
   </div>
  </div>
 </template>
@@ -23,7 +28,20 @@
         required: true
       }
     },
+   mounted() {
+     let cropElement = document.querySelectorAll('.sidebar-title'); // выбор элементов
+     let size = 30;                                             // кол-во символов
+     let endCharacter = '...';                                  // окончание
 
+cropElement.forEach(el => {
+    let text = el.innerHTML;
+
+    if (el.innerHTML.length > size) {
+        text = text.substr(0, size);
+        el.innerHTML = text + endCharacter;
+    }
+});
+   }
   }
 </script>
 
@@ -47,20 +65,48 @@
   @media (max-width: 1024px) and (min-width: 0px) {
     display: none;
   }
-  div {
-    display: flex;
-    color: white;
-    margin: 6% 0 6% 0;
-    justify-content: space-between;
-    height: 120px;
-    overflow: hidden;
-    img {
-      width: 50%;
+  a {
+    text-decoration: none;
+  }
+  .sidebar-post {
+    margin-bottom: 5%;
+    &:after{
+      content: '';
+      display: block;
+      position: relative;
+      width: 80%;
+      margin: 0 auto;
+      background: grey;
+      height: 0.4px;
+      top: 0px;
     }
-    .sidebar-info {
+    div {
       display: flex;
-      flex-direction: column;
-      margin: 0% 0 0% 0;
+      color: white;
+      justify-content: space-between;
+      margin: 0% 0 10% 0;
+      height: 100px;
+      img {
+        width: 44%;
+        height: 110px;
+      }
+      .sidebar-info {
+        width: 52%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin: 0% 0 0% 0;
+        h4 {
+          height: auto;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        span {
+          font-size: 14px;
+          flex-shrink: 0;
+          margin-top: 4px;
+        }
+      }
     }
   }
 }

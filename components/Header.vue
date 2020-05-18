@@ -97,7 +97,7 @@ this.testFunction()
 }
 header {
   font-family: "JetBrains_Mono";
-  height: 55px;
+  height: 56px;
   background: #121518;
   padding-top: 5px;
   &:before {
@@ -108,13 +108,13 @@ header {
     height: 1px;
     background: rgba(130, 194, 189, 1);
     position: absolute;
-    top: 55px;
+    top: 57px;
     box-shadow:
-    0px 4px 10px rgba(123, 177, 181, 1),
-    0px 6px 14px rgba(123, 177, 181, 0.9),
-    0px 8px 24px rgba(123, 177, 181, 0.8),
-    0px 12px 30px rgba(123, 177, 181, 0.7),
-    0px 16px 40px rgba(123, 177, 181, 0.6);
+    0px 3px 8px rgba(123, 177, 181, 0),
+    0px 5px 12px rgba(123, 177, 181, 0.9),
+    0px 6px 18px rgba(123, 177, 181, 0.8),
+    0px 10px 26px rgba(123, 177, 181, 0.7),
+    0px 14px 34px rgba(123, 177, 181, 0.6);
     @media (max-width: 1024px) and (min-width: 768px) {
       top: 60px;
     }
@@ -182,13 +182,13 @@ header {
         0 4px 2px -2px rgba(104, 180, 189, 0.4),;
     }
     &:before{
-      top: 14px;
-      right: 1.4%;
+      top: 15px;
+      right: 1.5%;
       background: rgb(73,73,73); /* Old browsers */
       background: -moz-linear-gradient(left, rgba(73,73,73,1) 70%, rgba(230,210,145,1) 100%); /* FF3.6-15 */
       background: -webkit-linear-gradient(left, rgba(73,73,73,1) 70%,rgba(230,210,145,1) 100%); /* Chrome10-25,Safari5.1-6 */
       background: linear-gradient(to right, rgba(73,73,73,1) 70%,rgba(230,210,145,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-      width: 39px;
+      width: 42px;
     }
     &:after{
       top: -15px;
@@ -270,9 +270,10 @@ header {
     }
     .search-button {
       background-image: url(../static/search.svg);
-      background-size: 40px 40px;
+      background-size: 40px 36px;
       width: 40px;
       height: 40px;
+      background-repeat: no-repeat;
       padding-left: 3px;
       button{
         -moz-transform: scale(-1, 1);

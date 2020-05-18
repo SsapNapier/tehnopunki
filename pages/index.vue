@@ -73,15 +73,10 @@ export default {
   flex-direction: column;
   background-image: url(../static/1233.jpg);
   background-size: 100vw 100vh;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-attachment: fixed;
   min-height: 100vh;
   background-color: #232323;
   background-position: absolute;
-  @media (max-width: 768px) and (min-width: 0px) {
-    background-repeat: repeat;
-    background-size: 100% 100%;
-    min-height: 100%;
-  }
 }
 </style>

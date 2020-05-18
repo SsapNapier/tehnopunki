@@ -76,7 +76,7 @@ export default {
   flex-direction: column;
   background-image: url(../../static/1233.jpg);
   background-size: 100vw 100vh;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-attachment: fixed;
   min-height: 100vh;
   background-color: #232323;

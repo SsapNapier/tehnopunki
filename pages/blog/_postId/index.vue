@@ -85,14 +85,10 @@ export default {
   flex-direction: column;
   background-image: url(../../../static/1233.jpg);
   background-size: 100vw 100vh;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-attachment: inherit;
   min-height: 100vh;
   z-index: -3;
-  @media (max-width: 768px) and (min-width: 0px) {
-    background-repeat: repeat;
-    background-size: 100% 100%;
-  }
   .this-content {
     display: flex;
     width: 80%;

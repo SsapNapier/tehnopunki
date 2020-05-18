@@ -83,6 +83,7 @@ export default {
   flex: 0;
   .comment{
     margin-top: 4.2%;
+    margin-bottom: 3%;
     width: 100%;
     .post{
       margin-top: 0.2%;
@@ -130,24 +131,28 @@ export default {
     }
     .name-button{
       display: flex;
-      justify-content: space-between;
-      width: 70%;
+      width: 60%;
       align-items: center;
-      margin-top: 2%;
+      margin-top: 0.2%;
+      min-width: 200px;
+      @media (max-width: 1024px) and (min-width: 480px) {
+        width: 70%;
+      }
       @media (max-width: 480px) and (min-width: 0px) {
         width: 80%;
       }
       input{
-        width: 60%;
-        padding: 1% 0% 2% 0%;
+        width: 80%;
+        padding: 1% 0% 3% 1%;
         @media (max-width: 768px) and (min-width: 480px) {
           padding: 1% 0% 3% 0%;
         }
       }
       button {
+        margin-left: 2%;
         border: none;
         border-radius: 3%;
-        padding: 1.3%;
+        padding: 2%;
         font-size: 15px;
         background: #D42839;
         color: white;
