@@ -1,5 +1,5 @@
 <template>
- <div class="content">
+ <div class="content" v-editable="blok">
    <div class="post-content">
      <div class="title">
        <h2>{{ title }}</h2>
@@ -25,7 +25,17 @@
      <div class="text">
        {{ content }}
      </div>
-     <div class="post-text">
+     <div class="list" v-if="`${list}` != 'kek'">
+       {{ list }}
+     </div>
+     <div class="post-image" v-if="`${secondImage}` != 'kek'">
+       <img :src="secondImage" alt="">
+     </div>
+     <div class="post-video" v-if="`${videoBlok}` != 'kek' ">
+       <img :src="videoBlok" alt="">
+     </div>
+     <div class="text" v-if="`${secondContent}` != 'kek'">
+       {{ secondContent }}
      </div>
    </div>
    <Comments :slug='slug' />
@@ -41,11 +51,27 @@ export default {
       type: String,
       required: true
     },
+    image: {
+      type: String,
+      required: true
+    },
     content: {
       type: String,
       required: true
     },
-    image: {
+    list: {
+      type: String,
+      required: true
+    },
+    secondImage: {
+      type: String,
+      required: true
+    },
+    videoBlok: {
+      type: String,
+      required: true
+    },
+    secondContent: {
       type: String,
       required: true
     },
@@ -54,6 +80,10 @@ export default {
       required: true
     },
     theme: {
+      type: String,
+      required: true
+    },
+    blok: {
       type: String,
       required: true
     },

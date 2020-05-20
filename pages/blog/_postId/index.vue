@@ -3,11 +3,16 @@
       <Header />
       <div class="this-content">
         <Post
-         :image='image'
-         :title='title'
-         :content='content'
          :slug='slug'
+         :title='title'
+         :image='image'
+         :content='content'
+         :list='list'
+         :secondImage='secondImage'
+         :videoBlok='videoBlok'
+         :secondContent='secondContent'
          :theme='theme'
+         :blok='blok'
           />
         <Sidebar
          :posts='posts'
@@ -30,8 +35,14 @@ export default {
       title: '',
       image: '',
       content: '',
+      list: '',
+      secondImage: '',
+      videoBlok: '',
+      secondContent: '',
       data: '',
-      theme: ''
+      theme: '',
+      blok: '',
+      story: { content: {} }
     }
   },
  asyncData(context) {
@@ -39,15 +50,21 @@ export default {
           version: process.env.NODE_ENV == "production" ? "published" : "draft",
           starts_with: "blog/"
         }).then(res => {
+          console.log(res.data)
           return {
             posts: res.data.stories.map(bp => {
               return {
                 id: bp.slug,
                 title: bp.content.title,
-                previewText: bp.content.summery,
                 thumbnailUrl: bp.content.thumbnail,
+                previewText: bp.content.summery,
+                postList: bp.content.lista,
+                secondPostImage: bp.content.secondThumbnailUrl,
+                videoPostBlok: bp.content.video,
+                secondPostText: bp.content.secondPreviewText,
                 theme: bp.content.Theme,
-                data: bp.created_at
+                data: bp.created_at,
+                edit: bp.content
               };
             })
           };
@@ -57,12 +74,59 @@ export default {
    for (let i = 0; i < this.posts.length; i++){
      if(this.posts[i].id == this.$route.params.postId){
        this.title = this.posts[i].title;
-       this.image = this.posts[i].thumbnailUrl;
-       this.content = this.posts[i].previewText;
+       if(this.posts[i].thumbnailUrl != undefined){
+         this.image = this.posts[i].thumbnailUrl;
+       }else{
+         this.image = 'kek';
+       }
+       if(this.posts[i].previewText != undefined){
+         this.content = this.posts[i].previewText;
+       }else{
+         this.content = 'kek';
+       }
+       if(this.posts[i].postList != undefined){
+         this.list = this.posts[i].postList;
+       }else{
+         this.list = 'kek';
+       }
+       if(this.posts[i].secondPostImage != undefined){
+         this.secondImage = this.posts[i].secondPostImage;
+       }else{
+         this.secondImage = 'kek';
+       }
+       if(this.posts[i].videoPostBlok != undefined){
+         this.videoBlok = this.posts[i].videoPostBlok;
+       }else{
+         this.videoBlok = 'kek';
+       }
+       if(this.posts[i].secondPostText != undefined){
+         this.secondContent = this.posts[i].secondPostText;
+       }else{
+         this.secondContent = 'kek';
+       }
        this.theme = this.posts[i].theme;
        this.data = this.posts[i].data;
+       this.blok = String(this.posts[i].edit);
       }
-    }
+    };
+    this.$storybridge.on(["input", "published", "change"], event => {
+
+       if (event.action === "input") {
+
+         if (event.story.id === this.story.id) {
+
+           this.story.content = event.story.content;
+
+         }
+
+       } else if (!event.slugChanged) {
+
+         window.location.reload();
+
+       }
+
+     });
+
   },
   components: {
     Header,
