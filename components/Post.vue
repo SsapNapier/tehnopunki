@@ -28,13 +28,13 @@
      <div class="list" v-if="`${list}` != ''">
        {{ list }}
      </div>
-     <div class="post-image" v-if="`${secondImage}` != undefined">
+     <div class="post-image" v-if="`${secondImage}` != ''">
        <img :src="secondImage" alt="">
      </div>
-     <div class="post-video" v-if="`${videoBlok}` != undefined ">
+     <div class="post-video" v-if="`${videoBlok}` != '' ">
        <img :src="videoBlok" alt="">
      </div>
-     <div class="text" v-if="`${secondContent}` != undefined">
+     <div class="text" v-if="`${secondContent}` != ''">
        {{ secondContent }}
      </div>
    </div>
