@@ -6,7 +6,8 @@
    class="sidebar-post">
   <nuxt-link :to="post.id">
    <div>
-    <img :src="post.thumbnailUrl" alt="">
+     <div class="img" :style="{backgroundImage: 'url(' + post.thumbnailUrl+ ')'}"></div>
+    <!-- <.img :src="post.thumbnailUrl" alt=""> -->
      <div class="sidebar-info">
       <h4 class="sidebar-title">{{ post.title }}</h4>
       <span>Сегодня в 12:34</span>
@@ -15,7 +16,6 @@
      </div>
    </div>
   </nuxt-link>
-  <!-- <hr> -->
   </div>
  </div>
 </template>
@@ -86,7 +86,8 @@ cropElement.forEach(el => {
       justify-content: space-between;
       margin: 0% 0 10% 0;
       height: 100px;
-      img {
+      .img {
+        background-size: cover;
         width: 44%;
         height: 110px;
       }

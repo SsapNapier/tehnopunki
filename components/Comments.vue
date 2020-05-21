@@ -79,12 +79,15 @@ export default {
   display: flex;
   flex-direction: column;
   width: 90%;
-  margin: 1% 0% 2% 4%;
+  margin: 0% 0% 2% 4%;
   flex: 0;
   .comment{
-    margin-top: 4.2%;
+    // margin-top: 3%;
     margin-bottom: 3%;
     width: 100%;
+    .post:nth-child(0){
+      margin-top: 2%;
+    }
     .post{
       margin-top: 0.2%;
       padding: 0.6% 1% 1% 1%;

@@ -22,19 +22,19 @@
      <div class="post-image">
        <img :src="image" alt="">
      </div>
-     <div class="text">
-       {{ content }}
+     <div class="text" v-html="content">
+       <!-- {{ content }} -->
      </div>
-     <div class="list" v-if="`${list}` != 'kek'">
+     <div class="list" v-if="`${list}` != ''">
        {{ list }}
      </div>
-     <div class="post-image" v-if="`${secondImage}` != 'kek'">
+     <div class="post-image" v-if="`${secondImage}` != undefined">
        <img :src="secondImage" alt="">
      </div>
-     <div class="post-video" v-if="`${videoBlok}` != 'kek' ">
+     <div class="post-video" v-if="`${videoBlok}` != undefined ">
        <img :src="videoBlok" alt="">
      </div>
-     <div class="text" v-if="`${secondContent}` != 'kek'">
+     <div class="text" v-if="`${secondContent}` != undefined">
        {{ secondContent }}
      </div>
    </div>
@@ -43,6 +43,7 @@
 </template>
 
 <script type="text/javascript">
+import RichTextRenderer from '@marvinrudolph/vue-storyblok-rich-text-renderer'
 import Comments from '~/components/Comments.vue'
 
 export default {
@@ -88,8 +89,25 @@ export default {
       required: true
     },
   },
+  data() {
+    return {
+      styleObject: {
+  color: 'red',
+  fontSize: '13px'
+}
+    }
+  },
   components: {
     Comments
+  },
+  computed: {
+   richtext() {
+    return this.text ? this.$storyapi.richTextResolver.render(this.text) : ''
+    }
+  },
+  mounted() {
+    let space = document.getElementsByClassName('space');
+    console.log(space);
   }
 }
 </script>
@@ -222,6 +240,10 @@ export default {
     .text {
       width: 90%;
       padding: 2% 0% 2% 4%;
+      i {
+        margin: 10px;
+        color: red;
+      }
     }
     .post-text {
       width: 90%;
@@ -239,6 +261,19 @@ export default {
         }
       }
     }
+    &:after {
+      content: "";
+      display: flex;
+      margin-left: 4%;
+      width: 44%;
+      height: 2px;
+      background: rgba(235, 45, 64, 0.9);
+      position: relative;
+      bottom: 1px;
+    }
   }
+}
+.space{
+  color: red;
 }
 </style>

@@ -74,36 +74,36 @@ export default {
    for (let i = 0; i < this.posts.length; i++){
      if(this.posts[i].id == this.$route.params.postId){
        this.title = this.posts[i].title;
-       if(this.posts[i].thumbnailUrl != undefined){
+       // if(this.posts[i].thumbnailUrl != undefined){
          this.image = this.posts[i].thumbnailUrl;
-       }else{
-         this.image = 'kek';
-       }
-       if(this.posts[i].previewText != undefined){
+       // }else{
+         // this.image = 'kek';
+       // }
+       // if(this.posts[i].previewText != undefined){
          this.content = this.posts[i].previewText;
-       }else{
-         this.content = 'kek';
-       }
-       if(this.posts[i].postList != undefined){
+       // }else{
+         // this.content = 'kek';
+       // }
+       // if(this.posts[i].postList != ''){
          this.list = this.posts[i].postList;
-       }else{
-         this.list = 'kek';
-       }
-       if(this.posts[i].secondPostImage != undefined){
+       // }else{
+         // this.list = 'kek';
+       // }
+       // if(this.posts[i].secondPostImage != undefined){
          this.secondImage = this.posts[i].secondPostImage;
-       }else{
-         this.secondImage = 'kek';
-       }
-       if(this.posts[i].videoPostBlok != undefined){
+       // }else{
+         // this.secondImage = 'kek';
+       // }
+       // if(this.posts[i].videoPostBlok != undefined){
          this.videoBlok = this.posts[i].videoPostBlok;
-       }else{
-         this.videoBlok = 'kek';
-       }
-       if(this.posts[i].secondPostText != undefined){
+       // }else{
+         // this.videoBlok = 'kek';
+       // }
+       // if(this.posts[i].secondPostText != undefined){
          this.secondContent = this.posts[i].secondPostText;
-       }else{
-         this.secondContent = 'kek';
-       }
+       // }else{
+         // this.secondContent = 'kek';
+       // }
        this.theme = this.posts[i].theme;
        this.data = this.posts[i].data;
        this.blok = String(this.posts[i].edit);
