@@ -27,10 +27,12 @@ import Header from '~/components/Header.vue'
 import Post from '~/components/Post.vue'
 import Sidebar from '~/components/Sidebar.vue'
 import Footer from '~/components/Footer.vue'
+import PostService from '~/src/PostService';
 
 export default {
   data(){
     return {
+      numbers: [],
       slug: this.$route.params.postId,
       title: '',
       image: '',
@@ -42,7 +44,9 @@ export default {
       data: '',
       theme: '',
       blok: '',
-      story: { content: {} }
+      story: { content: {} },
+      adress: '',
+      count: 0
     }
   },
  asyncData(context) {
@@ -50,7 +54,6 @@ export default {
           version: process.env.NODE_ENV == "production" ? "published" : "draft",
           starts_with: "blog/"
         }).then(res => {
-          console.log(res.data)
           return {
             posts: res.data.stories.map(bp => {
               return {
@@ -74,59 +77,37 @@ export default {
    for (let i = 0; i < this.posts.length; i++){
      if(this.posts[i].id == this.$route.params.postId){
        this.title = this.posts[i].title;
-       // if(this.posts[i].thumbnailUrl != undefined){
-         this.image = this.posts[i].thumbnailUrl;
-       // }else{
-         // this.image = 'kek';
-       // }
-       // if(this.posts[i].previewText != undefined){
-         this.content = this.posts[i].previewText;
-       // }else{
-         // this.content = 'kek';
-       // }
-       // if(this.posts[i].postList != ''){
-         this.list = this.posts[i].postList;
-       // }else{
-         // this.list = 'kek';
-       // }
-       // if(this.posts[i].secondPostImage != undefined){
-         this.secondImage = this.posts[i].secondPostImage;
-       // }else{
-         // this.secondImage = 'kek';
-       // }
-       // if(this.posts[i].videoPostBlok != undefined){
-         this.videoBlok = this.posts[i].videoPostBlok;
-       // }else{
-         // this.videoBlok = 'kek';
-       // }
-       // if(this.posts[i].secondPostText != undefined){
-         this.secondContent = this.posts[i].secondPostText;
-       // }else{
-         // this.secondContent = 'kek';
-       // }
+       this.image = this.posts[i].thumbnailUrl;
+       this.content = this.posts[i].previewText;
+       this.list = this.posts[i].postList;
+       this.secondImage = this.posts[i].secondPostImage;
+       this.videoBlok = this.posts[i].videoPostBlok;
+       this.secondContent = this.posts[i].secondPostText;
        this.theme = this.posts[i].theme;
        this.data = this.posts[i].data;
        this.blok = String(this.posts[i].edit);
       }
     };
-    this.$storybridge.on(["input", "published", "change"], event => {
-
-       if (event.action === "input") {
-
-         if (event.story.id === this.story.id) {
-
-           this.story.content = event.story.content;
-
-         }
-
-       } else if (!event.slugChanged) {
-
-         window.location.reload();
-
-       }
-
-     });
-
+  },
+  async created(){
+    try {
+      this.numbers = await PostService.getPosts();
+    } catch(err) {
+      this.error = err.message;
+    }
+    for(let i = 0; i < this.numbers.length; i++){
+      if(this.numbers[i].pathName == (this.$route.params.postId + 'count')){
+        this.id = this.numbers[i]._id;
+        this.count = (Number(this.numbers[i].count) + 1);
+      }
+    }
+    this.adress = this.$route.params.postId + 'count';
+    await PostService.insertPost(this.text, this.name, this.adress, this.count);
+    this.numbers = await PostService.getPosts();
+    if(this.id != undefined){
+      await PostService.deletePost(this.id);
+      this.numbers = await PostService.getPosts();
+    }
   },
   components: {
     Header,

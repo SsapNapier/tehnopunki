@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = '/api/posts';
+const url = '/api/posts/';
 
 class PostService {
   // Get PostService
@@ -22,14 +22,18 @@ class PostService {
   }
 
   // Create Post
-  static insertPost(text, name, pathName) {
+  static insertPost(text, name, pathName, count) {
     return axios.post(url, {
       text: text,
       name: name,
-      pathName: pathName
+      pathName: pathName,
+      count: count
     });
   }
-
+// Delete PostService
+  static deletePost(id) {
+    return axios.delete(`${url}${id}`);
+  }
 }
 
 export default PostService;

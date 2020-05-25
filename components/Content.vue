@@ -1,7 +1,7 @@
 <template>
  <div class="content">
    <div class="post-list">
-     <div class="post" v-for="post in posts.slice(`${beginPath}`, `${endPath}`)" :keys="posts">
+     <div class="post" v-for="(post, index) in posts.slice(`${beginPath}`, `${endPath}`)" :keys="posts">
       <nuxt-link
        :to="'blog/'+`${post.id}`">
        <article class="post-preview">
@@ -12,21 +12,42 @@
           <div class="timeXtheme">
             <div class="time">
              <font-awesome-icon :icon="['fas', 'calendar-alt']"/>
-             <span>Сегодня в
+             <div v-if="`${todayDate}` == post.data.substr(8, 2)">
+               <span>Сегодня в
+                 <span>
+                   {{ post.data.substr(11, 5) }}
+                 </span>
+               </span>
+             </div>
+             <div v-else>
+               <span>Создан:
+                 <span>
+                   {{ post.data.substr(2, 8) }}
+                 </span>
+               </span>
               <span>
-                12:34
               </span>
-             </span>
+             </div>
             </div>
             <div class="theme">
              <span>{{ post.theme }}</span>
             </div>
           </div>
           <div class="activity">
-            <span>534</span>
-           <font-awesome-icon :icon="['fas', 'eye']"/>
-           <span>3</span>
-           <font-awesome-icon :icon="['fas', 'comments']"/>
+           <span
+           v-for="noumera  in noumeras"
+           v-bind:item="noumera"
+           v-bind:key="noumera._id"
+           v-if="noumera.pathName == `${post.id+'count'}`"
+           >{{ noumera.count }}</span>
+            <font-awesome-icon :icon="['fas', 'eye']"/>
+           <div class="comments-number">
+             <span
+               v-for="commentNumber in commentNumbers"
+               v-if="`${commentNumber.pathName}` == `${post.id}`"
+               >{{ commentNumber.number }}</span>
+           </div>
+            <font-awesome-icon :icon="['fas', 'comments']"/>
           </div>
         </div>
         <div class="post-text">
@@ -55,6 +76,7 @@
 </template>
 
 <script type="text/javascript">
+import PostService from '../src/PostService';
 
 export default {
   props: {
@@ -69,23 +91,64 @@ export default {
   },
   data (){
     return{
+      noumeras: [],
       beginPath: 0,
       endPath: 6,
       currentPageNumber: 1,
       pagePath: this.$route.params.pageId,
+      todayDate: '',
+      comments: [],
+      commentNumbers: [],
+
+    }
+  },
+  async created(){
+    try {
+      this.noumeras = await PostService.getPosts();
+    } catch(err) {
+      this.error = err.message;
+    }
+    for(let i = 0; i < this.noumeras.length; i++){
+      this.comments[i] = this.noumeras[i].pathName;
+
+      this.comments.sort();
+    }
+    var current = null;
+    var cnt = 0;
+    for (var i = 0; i < this.comments.length; i++) {
+        if (this.comments[i] != current) {
+            if (cnt > 0) {
+              this.commentNumbers.push({
+                pathName: current,
+                number: cnt
+              })
+            }
+            current = this.comments[i];
+            cnt = 1;
+        } else {
+            cnt++;
+        }
+    }
+    if (cnt > 0) {
+      this.commentNumbers.push({
+        pathName: current,
+        number: cnt
+      })
     }
   },
   methods: {
     currentPage(event) {
       this.currentPageNumber = event.originalTarget.innerHTML;
       alert(this.currentPageNumber);
-    }
+    },
   },
   mounted() {
+    var now = new Date();
+    this.todayDate = now.getDate();
     if(this.pagePath > 1 && this.pagePath != '1'){
       this.beginPath = (Number(this.pagePath)-1)*6;
       this.endPath = ((Number(this.pagePath)-1)*6)+6;
-    }
+    };
   }
 }
 </script>
@@ -128,6 +191,7 @@ export default {
     background-size: 3px 3px;
     width:100%;
     height: 100%;
+    max-width: 1200px;
     .post {
       width: 30%;
       min-width: 290px;
@@ -156,7 +220,7 @@ export default {
         justify-content: space-between;
         border-bottom: 1px solid white;
         margin-top: 5.5%;
-        padding: 1%;
+        padding: 0%;
         div {
           display: flex;
           font-size: 12px;
@@ -164,11 +228,11 @@ export default {
         .timeXtheme{
           display: flex;
           justify-content: space-between;
-          width: 73%;
+          width: 75%;
           .time {
             display: flex;
             justify-content: space-between;
-            width: 54%;
+            width: 20%;
             flex-shrink: 0;
             span{
               flex-shrink: 0;
