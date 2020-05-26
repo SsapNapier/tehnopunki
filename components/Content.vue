@@ -49,7 +49,7 @@
              <span
                v-for="commentNumber in commentNumbers"
                v-if="`${commentNumber.pathName}` == `${post.id}`"
-               >{{ commentNumber.number }}</span>
+               >{{ commentNumber.number }}&nbsp;</span>
              <span v-else-if> 0</span>
            </div>
            <font-awesome-icon :icon="['fas', 'comments']"/>
@@ -252,18 +252,17 @@ export default {
         .activity{
           display: flex;
           justify-content: space-between;
-          width: 20%;
+          width: 22%;
         .activity-number{
-          width: 8px;
+          width: 44%;
           overflow: hidden;
           // unicode-bidi:bidi-override;
           // direction:rtl;
         }
         .comments-number{
-          width: 8px;
+          width: 41%;
           overflow: hidden;
-          // unicode-bidi:bidi-override;
-          // direction:rtl;
+          margin-left: 10%;
         }
           svg {
             color: rgba(230, 210, 145, 1);
