@@ -34,20 +34,25 @@
             </div>
           </div>
           <div class="activity">
-           <span
-           v-for="noumera  in noumeras"
-           v-bind:item="noumera"
-           v-bind:key="noumera._id"
-           v-if="noumera.pathName == `${post.id+'count'}`"
-           >{{ noumera.count }}</span>
+            <div class="activity-number">
+                <span
+                v-for="(noumera, index) in noumeras"
+                v-bind:item="noumera"
+                v-bind:key="noumera._id"
+                v-if="noumera.pathName == `${post.id+'count'}`"
+                > {{ noumera.count }}&nbsp;</span>
+                <span v-else-if
+                >0&nbsp;</span>
+            </div>
             <font-awesome-icon :icon="['fas', 'eye']"/>
            <div class="comments-number">
              <span
                v-for="commentNumber in commentNumbers"
                v-if="`${commentNumber.pathName}` == `${post.id}`"
                >{{ commentNumber.number }}</span>
+             <span v-else-if> 0</span>
            </div>
-            <font-awesome-icon :icon="['fas', 'comments']"/>
+           <font-awesome-icon :icon="['fas', 'comments']"/>
           </div>
         </div>
         <div class="post-text">
@@ -99,6 +104,7 @@ export default {
       todayDate: '',
       comments: [],
       commentNumbers: [],
+      myObject: true
 
     }
   },
@@ -149,7 +155,8 @@ export default {
       this.beginPath = (Number(this.pagePath)-1)*6;
       this.endPath = ((Number(this.pagePath)-1)*6)+6;
     };
-  }
+
+  },
 }
 </script>
 
@@ -246,6 +253,18 @@ export default {
           display: flex;
           justify-content: space-between;
           width: 20%;
+        .activity-number{
+          width: 8px;
+          overflow: hidden;
+          // unicode-bidi:bidi-override;
+          // direction:rtl;
+        }
+        .comments-number{
+          width: 8px;
+          overflow: hidden;
+          // unicode-bidi:bidi-override;
+          // direction:rtl;
+        }
           svg {
             color: rgba(230, 210, 145, 1);
           }

@@ -46,7 +46,7 @@ export default {
       blok: '',
       story: { content: {} },
       adress: '',
-      count: 0
+      count: 1
     }
   },
  asyncData(context) {
