@@ -256,8 +256,6 @@ export default {
         .activity-number{
           width: 44%;
           overflow: hidden;
-          // unicode-bidi:bidi-override;
-          // direction:rtl;
         }
         .comments-number{
           width: 41%;
@@ -286,8 +284,7 @@ export default {
   .number-of-page{
     display: flex;
     margin: 0 auto;
-    justify-content: center;
-    align-content: space-between;
+    justify-content: space-around;
     width: 6%;
     margin-top: 1.56%;
     margin-bottom: 1.76%;
@@ -295,10 +292,10 @@ export default {
     border-bottom: 2px solid rgba(235, 45, 64, 0.9);
     padding: 0.22%;
     box-shadow:
-      inset 0 -3px 5px -5px #e5365a,
-      inset 0 3px 5px -5px #e5365a,
-      0 -3px 5px -5px #e5365a,
-      0 3px 5px -5px #e5365a,;
+      inset 0 -3px 4px -6px #e5365a,
+      inset 0 3px 4px -6px #e5365a,
+      0 -3px 4px -6px #e5365a,
+      0 3px 4px -6px #e5365a,;
     @media (max-width: 1024px) and (min-width: 768px) {
       width: 8%;
     }
@@ -316,7 +313,7 @@ export default {
     a {
       font-family: "JetBrains_Mono";
       text-decoration: none;
-      color: rgba(235, 45, 64, 0.9);
+      color: rgba(235, 45, 64, 0.8);
       font-weight: 600;
       text-shadow:
       0 0 34px #bb3b55,

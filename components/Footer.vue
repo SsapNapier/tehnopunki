@@ -56,18 +56,9 @@ footer {
       justify-content: space-between;
       align-items: center;
       p {
-        width: 84%;
-        margin-left: -4%;
+        width: 100%;
+        margin-left: -7%;
         margin-top: 1%;
-        @media (max-width: 1024px) and (min-width: 768px) {
-          width: 92%;
-        }
-        @media (max-width: 768px) and (min-width: 4800px) {
-          width: 96%;
-        }
-        @media (max-width: 480px) and (min-width: 0px) {
-          width: 100%;
-        }
         span {
           color: rgba(195, 45, 64, 1);
         }
@@ -123,10 +114,16 @@ footer {
     .icons {
       display: flex;
       flex-direction: row;
-      width: 64%;
+      width: 86%;
+      max-width: 570px;
       justify-content: space-between;
       padding-top: 4%;
-      padding-right: 20%;
+      padding-right: 46%;
+      @media (max-width: 1024px) and (min-width: 768px) {
+        padding-right: 30%;
+        padding-top: 3%;
+        width: 90%;
+      }
       @media (max-width: 768px) and (min-width: 480px) {
         padding-right: 50%;
         padding-top: 1%;
