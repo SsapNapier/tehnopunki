@@ -19,7 +19,7 @@
      <div class="menu" v-if="isActive">
        <nuxt-link to="/Igry">Игры</nuxt-link>
        <nuxt-link to="/" v-bind:class="{ trueClass: Active}">Новости</nuxt-link>
-       <nuxt-link to="/Sborki">Сборки</nuxt-link>
+       <nuxt-link to="/tech">Сборки</nuxt-link>
        <nuxt-link to="/Tehnika">Техника</nuxt-link>
       </div>
      </transition>
