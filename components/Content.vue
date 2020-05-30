@@ -254,11 +254,11 @@ export default {
           justify-content: space-between;
           width: 22%;
         .activity-number{
-          width: 38%;
+          width: 32%;
           overflow: hidden;
         }
         .comments-number{
-          width: 38%;
+          width: 32%;
           overflow: hidden;
           margin-left: 10%;
         }
