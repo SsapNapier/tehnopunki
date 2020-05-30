@@ -11,14 +11,14 @@
      </div>
      <div class="menu hideThisMenu">
        <nuxt-link to="/Igry">Игры</nuxt-link>
-       <nuxt-link to="/" >Новости</nuxt-link>
-       <nuxt-link to="/Sborki">Сборки</nuxt-link>
+       <nuxt-link to="/" v-bind:class="{ trueClass: Active}">Новости</nuxt-link>
+       <nuxt-link to="/tech">Сборки</nuxt-link>
        <nuxt-link to="/Tehnika">Техника</nuxt-link>
       </div>
     <transition name="fade">
      <div class="menu" v-if="isActive">
        <nuxt-link to="/Igry">Игры</nuxt-link>
-       <nuxt-link to="/" >Новости</nuxt-link>
+       <nuxt-link to="/" v-bind:class="{ trueClass: Active}">Новости</nuxt-link>
        <nuxt-link to="/Sborki">Сборки</nuxt-link>
        <nuxt-link to="/Tehnika">Техника</nuxt-link>
       </div>
@@ -49,6 +49,7 @@
     data() {
       return {
         isActive: false,
+        Active: false
       }
     },
     methods:{
@@ -81,6 +82,11 @@
  }
 },
 mounted () {
+  if(this.$route.path == '/'){
+    this.Active = false;
+  }else{
+    this.Active = true;
+  }
 this.testFunction()
 }
   }
@@ -220,10 +226,17 @@ header {
       box-shadow:
       inset 0 -4px 2px -4px rgba(104, 180, 189, 1),
         0 1px 4px -4px rgba(104, 180, 189, 1),;
+
+    }
+    .trueClass{
+      border: none !important;
+      color: white !important;
+      text-shadow: none !important;
+      box-shadow: none !important;
       &:hover {
-        box-shadow:
-        inset 0 -5px 2px -4px rgba(104, 180, 189, 0.4),
-          0 4px 2px -2px rgba(104, 180, 189, 0.4),;
+        text-shadow:
+        0 0 4px rgba(104, 180, 189, 1) !important;
+        box-shadow: none !important;
       }
     }
     @media (max-width: 1024px) and (min-width: 0px) {
