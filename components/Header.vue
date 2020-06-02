@@ -285,7 +285,7 @@ header {
       background-image: url(../static/search.svg);
       background-size: 40px 36px;
       width: 40px;
-      height: 40px;
+      height: 38px;
       background-repeat: no-repeat;
       padding-left: 3px;
       button{

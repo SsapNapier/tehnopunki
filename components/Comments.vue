@@ -82,7 +82,7 @@ export default {
   margin: 0% 0% 2% 4%;
   flex: 0;
   .comment{
-    // margin-top: 3%;
+    margin-top: 3%;
     margin-bottom: 3%;
     width: 100%;
     .post:nth-child(0){

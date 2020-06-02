@@ -205,6 +205,10 @@ export default {
       border-bottom: 1px solid white;
       margin-bottom: 2%;
       background: rgba(30,30,30,.4);
+      @media (max-width: 480px) and (min-width: 0px) {
+        margin-top: 1.86%;
+        margin-bottom: 2.26%;
+      }
       .img{
         background-size: cover;
         height: 200px;
@@ -301,9 +305,13 @@ export default {
     }
     @media (max-width: 768px) and (min-width: 480px) {
       width: 10%;
+      margin-top: 2.26%;
+      margin-bottom: 2.46%;
     }
     @media (max-width: 480px) and (min-width: 0px) {
       width: 15%;
+      margin-top: 2.86%;
+      margin-bottom: 3.26%;
     }
     div {
       align-items: center;
