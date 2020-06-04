@@ -1,8 +1,8 @@
 {
-  "name": "j",
+  "name": "tehnopunki",
   "version": "1.0.0",
-  "description": "My top-notch Nuxt.js project",
-  "author": "Ssap Napier",
+  "description": "Сайт про игры и технику для ее запуска. Сборки и новости",
+  "author": "Victor Soltan",
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
