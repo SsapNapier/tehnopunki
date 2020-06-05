@@ -258,7 +258,7 @@ export default {
           justify-content: space-between;
           width: 22%;
         .activity-number{
-          width: 25%;
+          width: 22%;
           overflow: hidden;
         }
         .comments-number{
