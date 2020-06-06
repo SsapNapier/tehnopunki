@@ -10,8 +10,31 @@
     <!-- <.img :src="post.thumbnailUrl" alt=""> -->
      <div class="sidebar-info">
       <h4 class="sidebar-title">{{ post.title }}</h4>
-      <span>Сегодня в 12:34</span>
-      <span><span>534</span> Просмотров</span>
+      <div class="time">
+       <div v-if="`${todayDate}` == post.data.substr(8, 2)">
+        <span>Сегодня в
+         <span>
+          {{ post.data.substr(11, 5) }}
+         </span>
+        </span>
+        </div>
+        <div v-else>
+         <span>Создан:
+          <span>
+          {{ post.data.substr(2, 8) }}
+         </span>
+        </span>
+       </div>
+      </div>
+      <div class="activity">
+        <span
+        v-for="(noumera, index) in noumeras"
+        v-bind:item="noumera"
+        v-bind:key="noumera._id"
+        v-if="noumera.pathName == `${post.id+'count'}` && noumera.count > 4"
+        > {{ noumera.count }} просмотров</span>
+        <span>0 просмотров</span>
+      </div>
       <span>{{ post.theme }}</span>
      </div>
    </div>
@@ -21,6 +44,7 @@
 </template>
 
 <script type="text/javascript">
+import PostService from '../src/PostService';
   export default{
     props: {
       posts: {
@@ -28,19 +52,32 @@
         required: true
       }
     },
-   mounted() {
+    data(){
+      return{
+        todayDate: '',
+        noumeras: []
+      }
+    },
+    async created(){
+      try {
+        this.noumeras = await PostService.getPosts();
+      } catch(err) {
+        this.error = err.message;
+      }
+    },
+    mounted() {
+     var now = new Date();
+     this.todayDate = now.getDate();
      let cropElement = document.querySelectorAll('.sidebar-title'); // выбор элементов
-     let size = 30;                                             // кол-во символов
+     let size = 32;                                             // кол-во символов
      let endCharacter = '...';                                  // окончание
-
-cropElement.forEach(el => {
-    let text = el.innerHTML;
-
-    if (el.innerHTML.length > size) {
+     cropElement.forEach(el => {
+     let text = el.innerHTML;
+      if (el.innerHTML.length > size) {
         text = text.substr(0, size);
         el.innerHTML = text + endCharacter;
-    }
-});
+      }
+     });
    }
   }
 </script>
@@ -98,9 +135,17 @@ cropElement.forEach(el => {
         justify-content: flex-start;
         margin: 0% 0 0% 0;
         h4 {
-          height: auto;
-          overflow: hidden;
-          text-overflow: ellipsis;
+          font-size: 15px;
+        }
+        .time {
+          height: 7px;
+        }
+        .activity {
+          height: 7px;
+          max-width: 20px;
+          span:nth-child(2){
+            display: none;
+          }
         }
         span {
           font-size: 14px;

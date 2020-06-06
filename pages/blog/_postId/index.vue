@@ -13,6 +13,7 @@
          :secondContent='secondContent'
          :theme='theme'
          :blok='blok'
+         :data='data'
           />
         <Sidebar
          :posts='posts'
@@ -139,6 +140,9 @@ export default {
     margin: 0 auto;
     margin-top: 1%;
     margin-bottom: 1%;
+    @media (max-width: 1024px) and (min-width: 0px) {
+      display: column;
+    }
     @media (max-width: 1024px) and (min-width: 768px) {
       width: 70%;
     }

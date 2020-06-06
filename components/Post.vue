@@ -8,11 +8,31 @@
        <div class="timeXtheme">
          <div class="time">
           <font-awesome-icon :icon="['fas', 'calendar-alt']"/>
-          <span>Сегодня в 12:34</span>
+          <div v-if="`${todayDate}` == data.substr(8, 2)">
+            <span>Сегодня в
+              <span>
+                {{ data.substr(11, 5) }} /
+              </span>
+            </span>
+          </div>
+          <div v-else>
+            <span>Создан:
+              <span>
+                {{ data.substr(2, 8) }} /
+              </span>
+            </span>
+           <span>
+           </span>
+          </div>
          </div>
          <div class="activity">
-           <span>534</span>
-          <font-awesome-icon :icon="['fas', 'eye']"/>
+           <span
+           v-for="(noumera, index) in noumeras"
+           v-bind:item="noumera"
+           v-bind:key="noumera._id"
+           v-if="noumera.pathName == `${pagePath+'count'}`"
+           > {{ noumera.count }}</span>
+           <font-awesome-icon :icon="['fas', 'eye']"/>
          </div>
        </div>
        <div class="theme">
@@ -42,8 +62,8 @@
 </template>
 
 <script type="text/javascript">
-import RichTextRenderer from '@marvinrudolph/vue-storyblok-rich-text-renderer'
-import Comments from '~/components/Comments.vue'
+import PostService from '../src/PostService';
+import Comments from '~/components/Comments.vue';
 
 export default {
   props: {
@@ -87,17 +107,31 @@ export default {
       type: String,
       required: true
     },
+    data: {
+      type: String,
+      required: true
+    },
   },
   data() {
     return {
       styleObject: {
-  color: 'red',
-  fontSize: '13px'
-}
+      color: 'red',
+      fontSize: '13px'
+      },
+      noumeras: [],
+      todayDate: '',
+      pagePath: this.$route.params.postId,
     }
   },
   components: {
     Comments
+  },
+  async created(){
+    try {
+      this.noumeras = await PostService.getPosts();
+    } catch(err) {
+      this.error = err.message;
+    }
   },
   computed: {
    richtext() {
@@ -105,6 +139,8 @@ export default {
     }
   },
   mounted() {
+    var now = new Date();
+    this.todayDate = now.getDate();
     let space = document.getElementsByClassName('space');
     console.log(space);
   }
@@ -179,19 +215,15 @@ export default {
         font-size: 12px;
       }
       .timeXtheme{
+        align-items: center;
         display: flex;
         justify-content: space-between;
         width: 32.5%;
-        @media (max-width: 1024px) and (min-width: 768px) {
-          width: 40%;
-        }
-        @media (max-width: 768px) and (min-width: 480px) {
-          width: 42%;
-          min-width: 180px;
-        }
+        max-width: 180px;
+        min-width: 180px;
         @media (max-width: 480px) and (min-width: 0px) {
           width: 40%;
-          min-width: 175px;
+          min-width: 174px;
         }
         .time,
         .activity{
@@ -199,9 +231,15 @@ export default {
           justify-content: space-between;
           flex-shrink: 0;
         }
+        .time{
+          svg {
+            color: rgba(130, 194, 189, 1);
+            margin-right: 4%;
+          }
+        }
         .time {
           flex-shrink: 0;
-          width: 68%;
+          width: 86%;
           @media (max-width: 1024px) and (min-width: 768px) {
             width: 71%;
           }
@@ -216,10 +254,11 @@ export default {
           }
         }
         .activity{
-          width: 21%;
-          @media (max-width: 1024px) and (min-width: 768px) {
-            width: 23%;
-          }
+          flex-shrink: 0;
+          width: 14%;
+        }
+        svg {
+          color: rgba(230, 210, 145, 1);
         }
       }
     }

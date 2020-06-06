@@ -41,8 +41,7 @@
                 v-bind:key="noumera._id"
                 v-if="noumera.pathName == `${post.id+'count'}`"
                 > {{ noumera.count }}&nbsp;</span>
-                <span v-else-if
-                >0&nbsp;</span>
+                <span>0&nbsp;</span>
             </div>
             <font-awesome-icon :icon="['fas', 'eye']"/>
            <div class="comments-number">
@@ -258,11 +257,11 @@ export default {
           justify-content: space-between;
           width: 22%;
         .activity-number{
-          width: 20%;
+          width: 21%;
           overflow: hidden;
         }
         .comments-number{
-          width: 20%;
+          width: 21%;
           overflow: hidden;
           margin-left: 10%;
         }
