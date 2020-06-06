@@ -62,6 +62,7 @@
 </template>
 
 <script type="text/javascript">
+import Sidebar from '~/components/Sidebar.vue';
 import PostService from '../src/PostService';
 import Comments from '~/components/Comments.vue';
 

@@ -14,6 +14,7 @@
          :theme='theme'
          :blok='blok'
          :data='data'
+         :posts='posts'
           />
         <Sidebar
          :posts='posts'

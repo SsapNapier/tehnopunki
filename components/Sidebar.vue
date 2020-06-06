@@ -146,6 +146,9 @@ import PostService from '../src/PostService';
           span:nth-child(2){
             display: none;
           }
+          span:nth-child(3){
+            display: none;
+          }
         }
         span {
           font-size: 14px;
