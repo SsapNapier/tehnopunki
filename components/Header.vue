@@ -10,17 +10,17 @@
      </nuxt-link>
      </div>
      <div class="menu hideThisMenu">
-       <nuxt-link to="/Igry">Игры</nuxt-link>
+       <nuxt-link to="/igry">Игры</nuxt-link>
        <nuxt-link to="/" v-bind:class="{ trueClass: Active}">Новости</nuxt-link>
-       <nuxt-link to="/tech">Сборки</nuxt-link>
-       <nuxt-link to="/Tehnika">Техника</nuxt-link>
+       <nuxt-link to="/sborki">Сборки</nuxt-link>
+       <nuxt-link to="/tech">Техника</nuxt-link>
       </div>
     <transition name="fade">
      <div class="menu" v-if="isActive">
-       <nuxt-link to="/Igry">Игры</nuxt-link>
+       <nuxt-link to="/igry">Игры</nuxt-link>
        <nuxt-link to="/" v-bind:class="{ trueClass: Active}">Новости</nuxt-link>
-       <nuxt-link to="/tech">Сборки</nuxt-link>
-       <nuxt-link to="/Tehnika">Техника</nuxt-link>
+       <nuxt-link to="/sborki">Сборки</nuxt-link>
+       <nuxt-link to="/tech">Техника</nuxt-link>
       </div>
      </transition>
      <div class="search">

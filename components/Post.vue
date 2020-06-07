@@ -32,6 +32,7 @@
            v-bind:key="noumera._id"
            v-if="noumera.pathName == `${pagePath+'count'}`"
            > {{ noumera.count }}</span>
+           <span>0</span>
            <font-awesome-icon :icon="['fas', 'eye']"/>
          </div>
        </div>
@@ -115,10 +116,6 @@ export default {
   },
   data() {
     return {
-      styleObject: {
-      color: 'red',
-      fontSize: '13px'
-      },
       noumeras: [],
       todayDate: '',
       pagePath: this.$route.params.postId,
@@ -235,12 +232,11 @@ export default {
         .time{
           svg {
             color: rgba(130, 194, 189, 1);
-            margin-right: 4%;
           }
         }
         .time {
           flex-shrink: 0;
-          width: 86%;
+          width: 83%;
           @media (max-width: 1024px) and (min-width: 768px) {
             width: 71%;
           }
@@ -256,7 +252,10 @@ export default {
         }
         .activity{
           flex-shrink: 0;
-          width: 14%;
+          width: 13%;
+          span:nth-child(2){
+            display: none;
+          }
         }
         svg {
           color: rgba(230, 210, 145, 1);

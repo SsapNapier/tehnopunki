@@ -271,7 +271,7 @@ export default {
         }
       }
       .post-text{
-        max-height: 58px;
+        max-height: 57px;
         overflow: hidden;
         p {
           font-size: 14px;

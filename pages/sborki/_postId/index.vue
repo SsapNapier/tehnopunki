@@ -25,6 +25,7 @@ export default {
     return context.app.$storyapi
       .get("cdn/stories", {
         version: process.env.NODE_ENV == "production" ? "published" : "draft",
+        starts_with: "sborki/"
       })
       .then(res => {
         return {
@@ -70,7 +71,7 @@ export default {
 .container {
   display: flex;
   flex-direction: column;
-  background-image: url(../static/1233.jpg);
+  background-image: url(../../../static/1233.jpg);
   background-size: 100vw 100vh;
   background-repeat: repeat;
   background-attachment: fixed;
